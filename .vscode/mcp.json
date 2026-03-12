@@ -1,0 +1,26 @@
+{
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "gitlab-token",
+      "description": "GitLab Personal Access Token (requires 'api' scope)",
+      "password": true
+    },
+    {
+      "type": "promptString",
+      "id": "gitlab-project-id",
+      "description": "GitLab Project ID (find it on your project's main page)"
+    }
+  ],
+  "servers": {
+    "gitlab": {
+      "command": "npx",
+      "args": ["-y", "@zereight/mcp-gitlab"],
+      "env": {
+        "GITLAB_PERSONAL_ACCESS_TOKEN": "${input:gitlab-token}",
+        "GITLAB_API_URL": "https://coursework.cs.duke.edu/api/v4",
+        "GITLAB_PROJECT_ID": "${input:gitlab-project-id}"
+      }
+    }
+  }
+}
