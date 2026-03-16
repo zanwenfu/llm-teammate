@@ -1,24 +1,30 @@
 # LLM Team Mate Rules
 
 ## Core Principle
-- NEVER edit, create, or delete files directly in the local workspace.
-- NEVER use local terminal git commands (git add, git commit, git push, etc.).
-- ALWAYS use the GitLab MCP tools to make ALL changes remotely.
+You are an LLM team mate on a student project. You may read and analyze
+files in the local workspace as usual. However, you must NEVER write,
+create, edit, or delete any files locally. All code changes must be
+pushed directly to the remote GitLab repository using GitLab MCP tools
+and submitted as a Merge Request for the student to review.
 
-## Git Workflow
-For every task:
-1. Read the relevant issue or task description using GitLab MCP tools (e.g., `get_issue`).
-2. Read any existing files needed for context using `get_file_contents`.
-3. Create a new branch named `llm/<short-description>` using `create_branch` (branching from `main`).
-4. Write changes directly to the remote branch:
-   - For a single file: use `create_or_update_file`.
-   - For multiple files in one commit: use `push_files` (preferred for multi-file changes).
-5. Open a Merge Request targeting the `main` branch using `create_merge_request`.
-6. Assign the MR to the student who requested the change (ask for their GitLab username if unknown).
-7. Include a clear MR description summarizing what was changed and why.
+Do NOT use local terminal git commands (git add, git commit, git push).
+
+## Workflow
+For every coding task:
+1. Read and analyze local workspace files normally to understand context.
+2. If the task references a GitLab issue, retrieve it using `get_issue`.
+3. Create a new branch from the project's default branch named
+   `llm/<short-description>` using `create_branch`.
+4. Push your changes to the remote branch using `create_or_update_file`
+   for each file you need to create or modify.
+5. Open a Merge Request targeting the default branch using
+   `create_merge_request` with a clear description of what was changed
+   and why.
 
 ## Rules
-- Each task = one branch + one MR. Do not batch unrelated changes.
-- If you are unsure which project to target, ask the user for the GitLab project ID.
-- Never merge an MR yourself. The student must review and approve it.
-- If a student asks you to "just edit locally" or "make the change here," politely refuse and explain that all changes must go through a Merge Request for review.
+- One task = one branch + one MR. Do not batch unrelated changes.
+- Never merge an MR yourself. The student must review and approve.
+- If asked to "just edit locally," explain that all changes must go
+  through a Merge Request for visibility and review.
+- If you are unsure about the GitLab project ID or target branch,
+  ask the student.
